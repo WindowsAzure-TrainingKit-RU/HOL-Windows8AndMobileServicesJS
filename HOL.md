@@ -191,31 +191,77 @@ In demo, you add push notifications, using the Windows Push Notification service
 <a name="Register-your-app-for-push-notifications-and-configure-Mobile-Services" />
 ### Task 1 - Register your app for push notifications and configure Mobile Services ###
 
-1. Navigate to the [Windows Push Notifications & Live Connect](http://go.microsoft.com/fwlink/?LinkID=257677&clcid=0x409) page, login with your Microsoft account if needed, and then follow the instructions to register your app. 
+> **Note:** If you have a subscription for the Windows Store to obtain the WNS credentials, follow next steps, otherwise execute the [Appendix A: Requesting WNS credentials from the Windows Push Notifications & Live Connect Portal] (#AppendixA).
 
-	> **Note:** It's important to ensure the value supplied to the CN field is the same as the _Publisher_ field in your applications _package.appxmanifest Packaging tab_
+1.	Click **Store** in the Visual Studio menu and select **Reserve App Name**.
 
-1. At the end of the registration process for your app you will be provided with WNS Credentials.  Keep the page open or make a note of the **Package Name**, **Client Secret** and **Package SID**. 
+	![Reserving App Name](./Images/reserving-app-name.png?raw=true)
 
-	![Image 12](images/image-12.png?raw=true) 
+1.	The browser will display the Windows Store page that you will use to obtain your WNS credentials. In the Submit an app section, click **App Name**.
 
-	You must provide these values to Mobile Services to be able to use WNS.
+	> **Note:** You will have to sign in using your Microsoft Account to access the Windows Store.
+
+	![Giving your app a unique name](./Images/giving-app-name-windows-store.png?raw=true)
+
+1.	In the App name field, insert the Package Display Name that is inside the **package.appxmanifest** file of your solution and click **Reserve app name**. Then click **Save** to confirm the reservation.
+
+	![Reserving an app name](./Images/app-name-windows-store.png?raw=true)
+
+	![Confirming the app name reservation](./Images/name-reservation-successful-win-store.png?raw=true)
+
+1. Now you will have to identify your application to get a name and a publisher to insert in the **package.appxmanifest** file. In the Submit an app page, click **Advanced features**.
+
+	![Configuring push notifications for the Notifications.Client app](./Images/app-name-reverved-completely-windows-store.png?raw=true)
+
+1. In the Advanced features page, click **Push notifications and Live Connect services info**.
+
+	![Advanced features page](./Images/push-notif-live-connect-service-info.png?raw=true)
+
+1. Once in the Push notifications and Live Connect services info section, click **Identifying your app**.
+
+	![Push notifications Overview page](./Images/identifying-your-app.png?raw=true)
+
+1. Now we have to set the Identity Name and Publisher of our **package.appxmanifest** file with the information in Windows Store. Go back to Visual Studio, right-click the **package.appxmanifest** and select **View Code**. Replace the Name and Publisher attributes of the Identity element with the ones obtained in Windows Store. Click **Authenticating your service**.
+
+	![Setting Identity Name and Publisher](./Images/app-identification.png?raw=true)
+
+1. Finally we obtained a **Package Security Identifier (SID)** and a **Client secret**, which are the WNS Credentials that we need to update the Web configuration of our Notification App Server.
+
+	![Package Security Identifier (SID) and Client secret](./Images/sid-client-secret.png?raw=true)
 
 	> **Note:** The client secret and package SID are important security credentials. Do not share these secrets with anyone or distribute them with your app.
 	
 1. Log on to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
-	![Image 13](images/image-13.png?raw=true)
+	![Image 13](Images/image-13.png?raw=true)
 
 1. Click the **Push** tab, enter the **Client secret** and **Package SID** values obtained for WNS above, and click **Save**.
 
-	![Image 14](images/image-14.png?raw=true)
+	![Image 14](Images/image-14.png?raw=true)
 
-1. In visual studio open **package.appxmanifest**, select the **Packaging** tab and update the package name field to match that provided in the Windows Push Notification and Live Connect Portal
+	> **Note:** In the following steps you will associate your application with the Windows Store. If you obtained your WNS credentials from the Windows Push Notifications & Live Connect Portal, there is no need to execute these steps.
 
-	![Image 15](images/image-15.png?raw=true)
+1.	Click **Store** in the Visual Studio menu and select **Associate App with the Store**.
 
-	![updating package manifest](images/updating-package-manifest.png?raw=true)
+	![Associating App with Store](./Images/associating-app-with-store.png?raw=true)
+
+1. In the Associate Your App with the Windows Store wizard, click **Sign In**.
+
+	![Associating App with Store Wizard](./Images/associate-app-with-store.png?raw=true)
+
+1. Enter your credentials and click **Sign In**.
+
+	![Inserting your credentials to assciate your app in Windows Store](./Images/sign-in-for-association.png?raw=true)
+
+1. In the Select an app name step, select **Notifications.Client** and click **Next**.
+
+	![Selecting your app name](./Images/selecting-app-name.png?raw=true)
+
+1. Take a look at the summary of the values that will be added in the manifest file. Click **Associate**. 
+
+	![Associating your app with the Windows Store Summary](./Images/association-summary.png?raw=true)
+
+1.	**Close** and **Save** changes to **package.appmanifest**.
 
 <a name="Add-push-notifications-to-the-app" />
 ### Task 2 - Add push notifications to the app ###
@@ -478,3 +524,48 @@ Next, you will update the app to authenticate users with Live Connect before req
 	When you are successfully logged-in, the app should run without errors, and you should be able to query Mobile Services and make updates to data.
 
 ---
+
+<a name="AppendixA"></a>
+## Appendix A: Requesting WNS credentials from the Windows Push Notifications & Live Connect Portal ##
+
+Follow these steps in order to obtain your free WNS credentials from the Microsoft Dev Portal.
+
+To request **WNS** credentials you will require your publisher credentials for your Windows 8 Style UI app. 
+
+1. In a new instance of **Visual Studio Express 2012 for Windows 8**, open your existing Windows 8 Style UI application or create a new application.
+
+1.  In solution explorer open your **Package.appxmanifest** and select the **packaging** tab.  We will use the **Package Display Name** and **Publisher** fields for creating your **WNS** Credentials.
+
+	![Opening Package.appxmanifest](./Images/opening-packageappxmanifest2.png?raw=true)
+	
+	_Opening Package.appxmanifest_
+
+1. Navigate to the **Windows Push Notifications & Live Connect** portal (http://manage.dev.live.com/build).
+
+	![Login to request WNS credentials](./Images/login-to-request-wns-credentials.png?raw=true)
+
+	_Login to request WNS credentials_
+
+1.  Sign in using your **Microsoft Account**.
+
+1.  Follow the **Step 1** and **Step 2** provided in the portal to supply your Package Name and Certificate Name (CN) and click **I accept**.
+
+	![Requesting WNS Credentials](./Images/requesting-wns-credentials.png?raw=true)
+
+	_Requesting WNS Credentials_
+
+	> **Note:**  Make sure you have copied the publisher to the portal correctly, otherwise, you will get a 403 unauthorized error when trying to send notifications.
+
+1. Finally in the **Step 3** you obtained your WNS credentials, which are a **Package Name** that you will insert in the application manifest file of you Windows 8 Style UI App, and a **Client Secret** and a **Package SID** identifier that you will use later in this lab.
+
+	![Credentials supplied for Auth against WNS](./Images/credentials-supplied-for-auth-against-wns.png?raw=true)
+
+	_Credentials supplied for Auth against WNS_
+
+1.  Select the **Packaging** tab of the **package.appmanifest** of you Windows Style UI App.
+
+1.  Update the **Package Name** to the Package name created during the prior task in the [Windows Push Notifications & Live Connect Portal] (https://manage.dev.live.com/build) as depicted in the following figure. 
+
+	![Configuring your package.appmanifest package name](./Images/configuring-your-packageappmanifest-package-n.png?raw=true)
+
+	_Configuring your package.appmanifest package name_
