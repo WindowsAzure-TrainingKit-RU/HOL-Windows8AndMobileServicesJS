@@ -18,7 +18,7 @@ In this HOL you will learn how you can leverage Visual Studio 2012 and Windows A
 ### Prerequisites ###
 
 - Windows Azure subscription with Mobile Services preview enabled - [Create a Windows Azure account and enable preview features][1]
-- [Visual Studio 2012](http://www.microsoft.com/visualstudio/11/en-us/downloads#groups)
+- [Visual Studio Express 2012 for Windows 8](http://www.microsoft.com/visualstudio/) or higher
 
 [1]: http://www.windowsazure.com/en-us/develop/mobile/tutorials/create-a-windows-azure-account/
 
