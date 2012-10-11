@@ -38,7 +38,7 @@ This exercise shows you how to add a cloud-based backend service to a Windows 8 
 
 A screenshot from the completed app is below:
 
-![Image 1](images/image-1.png?raw=true)
+![Image 1](Images/image-1.png?raw=true)
 
 <a name="create-a-new-mobile-service" />
 ### Task 1- Create a new mobile service ###
@@ -48,17 +48,17 @@ Follow these steps to create a new mobile service.
 
 1. Click the **+New** button then click **Mobile Service**, **Create**
 
-	![image-2](images/image-2.png?raw=true)
+	![image-2](Images/image-2.png?raw=true)
 
 1. Expand **Mobile Service**, then click **Create**
  
-	![Image 3](images/image-3.png?raw=true)
+	![Image 3](Images/image-3.png?raw=true)
  
 	This displays the **New Mobile Service** dialog.
 
 1. In the **Create a mobile service** page, type a subdomain name for the new mobile service in the **URL** textbox and wait for name verification. Once name verification completes, click the right arrow button to go to the next page.
  
-	![Image 4](images/image-4.png?raw=true)
+	![Image 4](Images/image-4.png?raw=true)
 
 	This displays the **Specify database settings** page.
 
@@ -66,7 +66,7 @@ Follow these steps to create a new mobile service.
 
 1. In **Name**, type the name of the new database, then type **Login name**, which is the administrator login name for the new SQL Database server, type and confirm the password, and click the check button to complete the process.
  
-	![Image 5](images/image-5.png?raw=true)
+	![Image 5](Images/image-5.png?raw=true)
 
 	> **Note:**  When the password that you supply does not meet the minimum requirements or when there is a mismatch, a warning is displayed.  We recommend that you make a note of the administrator login name and password that you specify; you will need this information to reuse the SQL Database instance or the server in the future. You have now created a new mobile service that can be used by your mobile apps.
 
@@ -81,11 +81,11 @@ Once you have created your mobile service, you can follow an easy quick start in
 
 1. In the quickstart tab, expand **Create a new Windows 8 application**.
 
-	![Image 6](images/image-6.png?raw=true)
+	![Image 6](Images/image-6.png?raw=true)
 
 	This displays the three easy steps to create a Windows 8 app connected to your mobile service.
 
-	![Image 7](images/image-7.png?raw=true)
+	![Image 7](Images/image-7.png?raw=true)
 
 1. If you haven't already done so, download and install [Visual Studio 2012 Express for Windows 8](http://go.microsoft.com/fwlink/?LinkId=257546&clcid=0x409) and the [Mobile Services SDK](http://go.microsoft.com/fwlink/?LinkId=257545&clcid=0x409) on your local computer or virtual machine.
 
@@ -96,13 +96,13 @@ Once you have created your mobile service, you can follow an easy quick start in
 
 1. Browse to the location where you saved the compressed project files, expand the files on your computer, and open the solution file in Visual Studio 2012 Express for Windows 8.
 
-	![TodoList Solution Files](images/todolist-solution-files.png?raw=true)
+	![TodoList Solution Files](Images/todolist-solution-files.png?raw=true)
 
 1. Press the **F5** key to rebuild the project and start the app.
 
 1. In the app, type meaningful text, such as _Complete the demo_, in the **Insert a TodoItem** textbox, and then click **Save**.
 
-	![Image 9](images/image-9.png?raw=true)
+	![Image 9](Images/image-9.png?raw=true)
 
 	This sends a POST request to the new mobile service hosted in Windows Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile service, and the data is displayed in the second column in the app.
 
@@ -110,11 +110,11 @@ Once you have created your mobile service, you can follow an easy quick start in
 
 1. Back in the Management Portal, click the **Data** tab and then click the **TodoItems** table and observe that the data as been successfully stored
 
-	![Image 10](images/image-10.png?raw=true)
+	![Image 10](Images/image-10.png?raw=true)
 
 	This lets you browse the data inserted by the app into the table.
 
-	![Image 11](images/image-11.png?raw=true)
+	![Image 11](Images/image-11.png?raw=true)
 
 <a name="Explore-your-app-code" />
 ### Task 4 - Explore your app code ###
@@ -306,11 +306,11 @@ In this section we add a Channel table and server side scripts to send push noti
 
 1. Click **+ Create** in the bottom toolbar
 
-	![Image 19](images/image-19.png?raw=true)
+	![Image 19](Images/image-19.png?raw=true)
 
 1. In **Table name** type _Channel_, then click the check button.
 		
-	![Image 20](images/image-20.png?raw=true)
+	![Image 20](Images/image-20.png?raw=true)
 
 1. Click the new **Channel** table and verify that there are no data rows.
 
@@ -342,7 +342,7 @@ This is the minimum requirement for a table in Mobile Services.
 
 1. Click **Save** in the bottom toolbar 
 
-	![Image 21](images/image-21.png?raw=true)
+	![Image 21](Images/image-21.png?raw=true)
 
 1. Now in the left navbar select the **TodoItem** table 
 
@@ -386,7 +386,7 @@ This is the minimum requirement for a table in Mobile Services.
 	````
 	> **Note:** This script executes as a each time a the insert operation is executed on the Todoitem table.  The sendNotifications method we select all channels from the Channels table and iterate through them sending a push notification to each channel uri.  While we have only demonstrated a single toast template the push.wns.* namespace provides simple to use methods required for sending toast, tile and badge updates. As you can see in this scenario we are sending a ToastText04 template which requires three lines of text.  When you build your applications we would advise that you do not send toast notifications so frequently but rather only at times when there is a critical or important message to deliver the user of your application.
 
-	![Image 22](images/image-22.png?raw=true)
+	![Image 22](Images/image-22.png?raw=true)
 
 Next we will move on to look at how you can secure your Mobile Service endpoints
 
@@ -404,11 +404,11 @@ To be able to authenticate users, you must register your Windows 8 app at the Li
 
 1. To enable auth you must now Navigate to the [My Apps dashboard](http://go.microsoft.com/fwlink/?LinkId=262039&clcid=0x409) in Live Connect Developer Center and click on your app in the **My applications** list.
 
-	![Image 24](images/image-24.png?raw=true)
+	![Image 24](Images/image-24.png?raw=true)
 
 1. Click **Edit settings**, then **API Settings** and make a note of the value of **Client secret**.
 
-	![Image 25](images/image-25.png?raw=true)
+	![Image 25](Images/image-25.png?raw=true)
  
 	You must provide this value to Mobile Services to be able to use Live Connect for authentication.
 
@@ -418,22 +418,22 @@ To be able to authenticate users, you must register your Windows 8 app at the Li
 
 1. Return to the [Windows Azure Management Portal](https://manage.windowsazure.com/), click **Mobile Services**, and then click your app.
 
-	![Image 26](images/image-26.png?raw=true)
+	![Image 26](Images/image-26.png?raw=true)
 
 1. Click the **Identity** tab, enter the **Client secret** obtained from Live Connect, and click **Save**.
 
-	![Updating Client Secret](images/updating-client-secret.png?raw=true)
+	![Updating Client Secret](Images/updating-client-secret.png?raw=true)
 
 <a name="Restrict-permissions" />
 ### Task 2 - Restrict permissions ###
 
 1. In the Management Portal, click the **Data** tab, and then click the **TodoItem** table.
 
-	![Image 28](images/image-28.png?raw=true)
+	![Image 28](Images/image-28.png?raw=true)
 
 1. Click the **Permissions** tab, set all permissions to **Only authenticated users**, and then click **Save**. This will ensure that all operations against the **TodoItem** table require an authenticated user. This also simplifies the scripts in the next tutorial because they will not have to allow for the possibility of anonymous users
 
-	![Image 29](images/image-29.png?raw=true)
+	![Image 29](Images/image-29.png?raw=true)
 
 1. Return to Visual Studio 2012 and press the **F5** key to run this quickstart-based app; verify that an exception with a status code of 401 (Unauthorized) is raised.
 This happens because the app is accessing Mobile Services as an unauthenticated user, but the _TodoItem_ table now requires authentication.
@@ -447,7 +447,7 @@ Next, you will update the app to authenticate users with Live Connect before req
 
 1. In the project in Visual Studio, click **Add Reference**, then expand **Windows**, click **Extensions**, check **Live SDK** and click **OK**.
 
-	![Adding the Live SDK extension](images/adding-the-live-sdk-extension.png?raw=true)
+	![Adding the Live SDK extension](Images/adding-the-live-sdk-extension.png?raw=true)
 
 1. Open the **default.html** file and add the following **\<script\>** element in the **\<head\>** element.
 
