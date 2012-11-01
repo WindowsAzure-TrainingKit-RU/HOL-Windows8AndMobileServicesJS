@@ -14,7 +14,7 @@
   </Description>
   <Document ConversionType="Html">.\HOL.md</Document>
   <Title>Introduction to Building Windows Store Apps with Windows Azure Mobile Services (JS)</Title>
-  <Version>1.0.1</Version>
+  <Version>1.0.2</Version>
   <Source>.\Source</Source>
   <DependencyChecker>.\Source\Setup\Dependencies.depi</DependencyChecker>
   <CustomProperties>
