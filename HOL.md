@@ -4,7 +4,7 @@
 ---
 <a name="Overview" />
 ## Overview ##
-In this HOL you will learn how you can leverage Visual Studio 2012 and Windows Azure Mobile Services to add structured storage, push notifications and integrated authentication to your Windows Store applications.
+In this HOL you will learn how you can leverage Visual Studio 2012 and Windows Azure Mobile Services to add structured storage, push notifications, integrated authentication and scheduled jobs to your Windows Store applications.
 
 <a name="Objectives" />
 ### Objectives ###
@@ -13,7 +13,7 @@ In this HOL you will learn how you can leverage Visual Studio 2012 and Windows A
 - Learn how to Insert, Update, Read and Delete rows from a Mobile Service
 - Add Push Notifications to your application
 - Lock down your Mobile Service such that only authenticated users can consume it
-
+- Add a Scheduled Job to poll the Twitter API and send tile updates
 <a name="technologies" />
 ### Prerequisites ###
 
@@ -30,6 +30,7 @@ This hands-on lab includes the following exercises:
 1. [Creating your first Mobile Service](#Exercise1)
 1. [Adding Push Notifications to your app](#Exercise2)
 1. [Adding Auth to Your App and Services](#Exercise3)
+1. [Adding a Scheduled Job to your Mobile Service](#Exercise4)
 
 <a name="Exercise1" />
 ## Exercise 1: Creating your first Mobile Service ##
@@ -404,7 +405,7 @@ To be able to authenticate users, you must register your Windows 8 app at the Li
 
 	![Image 24](Images/image-24.png?raw=true)
 
-1. Click **Edit settings**, then **API Settings** and make a note of the value of **Client secret**.
+1. Click **Edit settings**, then **API Settings** and make a note of the value of **Client ID** and **Client secret**.
 
 	![Image 25](Images/image-25.png?raw=true)
  
@@ -436,11 +437,11 @@ To be able to authenticate users, you must register your Windows 8 app at the Li
 1. Return to Visual Studio 2012 and press the **F5** key to run this quickstart-based app; verify that an exception with a status code of 401 (Unauthorized) is raised.
 This happens because the app is accessing Mobile Services as an unauthenticated user, but the _TodoItem_ table now requires authentication.
 
-Next, you will update the app to authenticate users with Live Connect before requesting resources from the mobile service.
+Next, you will update the app to authenticate users with your Microsoft Account before requesting resources from the mobile service.
 
 <a name="Add-authentication" />
 ### Task 3 - Add authentication ###
-	
+
 1. Download and install the [Live SDK for Windows](http://go.microsoft.com/fwlink/?LinkId=262253&clcid=0x409)
 
 1. In the project in Visual Studio, click **Add Reference**, then expand **Windows**, click **Extensions**, check **Live SDK** and click **OK**.
@@ -521,8 +522,96 @@ Next, you will update the app to authenticate users with Live Connect before req
 
 	When you are successfully logged-in, the app should run without errors, and you should be able to query Mobile Services and make updates to data.
 
----
+<a name="Exercise4" />
+## Exercise 4: Adding a Scheduled Job to your Mobile Service ##
 
+In this demo you learn how to execute script on a scheduled basis using **Windows Azure Mobile Services**.  In this scenario we will configure the scheduler to poll Twitter every 15 minutes and then send a Tile update with the latest tweets.
+
+
+### Task 1 - Configure your Windows store app for Wide Tiles ###
+1. In Visual Studio Open your **package.appxmanifest**
+
+1. Select the Application UI tab
+
+1. Provide a Wide Tile Logo of 310x150 pixels.  
+
+![Image 47](images/image-47.png?raw=true)
+
+> **Note:** Note if you do not have an image of these dimensions available you can use Microsoft Paint to quickly create one
+
+
+### Task 2 - Configure the Mobile Services scheduler ###
+
+1. Create the scheduler job that will send push notifications to registered clients every 15 minutes with the latest Twitter updates for a particular twitter handle.
+
+	![Image 39](images/image-39.png?raw=true)
+
+1. Specify a name for the job and make sure the schedule frequency is set to **every 15 minutes**. Click the check mark to create the job.
+
+	![Image 40](images/image-40.png?raw=true)
+
+1. Select the created job from the job list.
+
+	![Image 41](images/image-41.png?raw=true)
+
+1. Select the **Script** tab and paste the code snippet below that both polls Twitter and then composes a push notification to update your start screens tile using push.wns.*
+ 
+	````JavaScript
+	function CheckFeed() {
+		 getUpdatesAndNotify();
+	}
+
+	var request = require('request');
+	function getUpdatesAndNotify() {  
+		 request('http://search.twitter.com/search.json?q=@cloudnick&rpp=2', 
+			  function tweetsLoaded (error, response, body) {
+				  var results = JSON.parse(body).results;
+				  if(results){
+						results.forEach(function visitResult(tweet){
+						 sendNotifications(tweet);
+						});
+				  }            
+			  });
+	}
+
+	function sendNotifications(tweet){    
+			  
+		 var channelTable = tables.getTable('Channel');
+		  channelTable.read({
+				success: function(channels) {
+					 channels.forEach(function(channel) {   
+																							
+						  push.wns.sendTileWideSmallImageAndText04(channel.uri, {
+								image1src: tweet.profile_image_url,                            
+								text1: '@' + tweet.from_user,
+								text2: tweet.text
+						  });                  
+																																	 
+					 });
+				}
+			 });
+	}
+	````
+1. Once you paste the script into the editor, click the **Save** button to store the changes to the script
+
+	![Image 42](images/image-42.png?raw=true)
+
+ 
+1. In Visual Studio, press **F5** to build and run the application.  This will ensure your channel URI is up to date and will ensure the Default Wide tile is now on your Start screen
+
+1. Go back to the Windows Azure Management Portal, select the **Scheduler** tab of your mobile service, and then click **Enable** in the command bar to allow the job to run.
+
+	![Image 44](images/image-44.png?raw=true)
+
+1. To test your script immediately rather than wait 15 minutes for it to be scheduled, click **Run Once** in the command bar.
+
+	![Image 45](images/image-45.png?raw=true)
+
+1. Return to the start screen and see the latest update on your application tile
+
+	![Image 46](images/image-46.png?raw=true)
+
+---
 <a name="Summary"></a>
 ## Summary ##
 By completing this hands-on lab you have learnt how to:
@@ -532,5 +621,6 @@ By completing this hands-on lab you have learnt how to:
 - Learn how to Insert, Update, Read and Delete rows from a Mobile Service
 - Add Push Notifications to your application
 - Lock down your Mobile Service such that only authenticated users can consume it
+- Use the Scheduler to execute scripts at a scheduled interval
 
 ---
