@@ -609,7 +609,7 @@ In this demo you learn how to execute script on a scheduled basis using **Window
 
 1. Return to the start screen and see the latest update on your application tile
 
-	![Image 46](images/image-46.png?raw=true)
+	![Image 46](Images/image-46.png?raw=true)
 
 ---
 <a name="Summary"></a>
