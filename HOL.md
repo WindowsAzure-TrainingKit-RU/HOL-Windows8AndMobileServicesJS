@@ -535,7 +535,7 @@ In this demo you learn how to execute script on a scheduled basis using **Window
 
 1. Provide a Wide Tile Logo of 310x150 pixels.  
 
-![Image 47](images/image-47.png?raw=true)
+![Image 47](Images/image-47.png?raw=true)
 
 > **Note:** Note if you do not have an image of these dimensions available you can use Microsoft Paint to quickly create one
 
@@ -544,15 +544,15 @@ In this demo you learn how to execute script on a scheduled basis using **Window
 
 1. Create the scheduler job that will send push notifications to registered clients every 15 minutes with the latest Twitter updates for a particular twitter handle.
 
-	![Image 39](images/image-39.png?raw=true)
+	![Image 39](Images/image-39.png?raw=true)
 
 1. Specify a name for the job and make sure the schedule frequency is set to **every 15 minutes**. Click the check mark to create the job.
 
-	![Image 40](images/image-40.png?raw=true)
+	![Image 40](Images/image-40.png?raw=true)
 
 1. Select the created job from the job list.
 
-	![Image 41](images/image-41.png?raw=true)
+	![Image 41](Images/image-41.png?raw=true)
 
 1. Select the **Script** tab and paste the code snippet below that both polls Twitter and then composes a push notification to update your start screens tile using push.wns.*
  
@@ -594,18 +594,18 @@ In this demo you learn how to execute script on a scheduled basis using **Window
 	````
 1. Once you paste the script into the editor, click the **Save** button to store the changes to the script
 
-	![Image 42](images/image-42.png?raw=true)
+	![Image 42](Images/image-42.png?raw=true)
 
  
 1. In Visual Studio, press **F5** to build and run the application.  This will ensure your channel URI is up to date and will ensure the Default Wide tile is now on your Start screen
 
 1. Go back to the Windows Azure Management Portal, select the **Scheduler** tab of your mobile service, and then click **Enable** in the command bar to allow the job to run.
 
-	![Image 44](images/image-44.png?raw=true)
+	![Image 44](Images/image-44.png?raw=true)
 
 1. To test your script immediately rather than wait 15 minutes for it to be scheduled, click **Run Once** in the command bar.
 
-	![Image 45](images/image-45.png?raw=true)
+	![Image 45](Images/image-45.png?raw=true)
 
 1. Return to the start screen and see the latest update on your application tile
 
