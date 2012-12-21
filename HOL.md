@@ -3,7 +3,7 @@
 
 ---
 <a name="Overview" />
-## Overview ##
+### Overview ###
 In this HOL you will learn how you can leverage Visual Studio 2012 and Windows Azure Mobile Services to add structured storage, push notifications, integrated authentication and scheduled jobs to your Windows Store applications.
 
 <a name="Objectives" />
